@@ -1,8 +1,13 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'], display: 'swap' });
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['300', '400', '500', '600', '700', '800'],
+  variable: '--font-plus-jakarta',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -11,7 +16,7 @@ export const metadata: Metadata = {
   },
   description:
     'Deploy VMs, managed databases, Kubernetes, and ML environments in seconds. ' +
-    'India\'s first DPDP-compliant, solar-powered cloud. 60% cheaper than AWS. ' +
+    "India's first DPDP-compliant, solar-powered cloud. 60% cheaper than AWS. " +
     'Data never leaves India. Built in Bhubaneswar, Odisha.',
   keywords: [
     'cloud hosting India',
@@ -50,8 +55,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.className}>
-      <body>{children}</body>
+    <html lang="en" className={plusJakartaSans.variable}>
+      <body className={plusJakartaSans.className}>{children}</body>
     </html>
   );
 }
