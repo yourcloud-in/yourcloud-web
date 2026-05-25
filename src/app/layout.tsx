@@ -16,14 +16,17 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://yourcloud.in'),
+  metadataBase: new URL('https://gravrel.com'),
   title: {
-    default: "YourCloud — India's First Solar-Powered, DPDP-Compliant Cloud",
-    template: '%s | YourCloud by GravRel',
+    default: "GravRel — India's First Solar-Powered DPDP-Compliant Cloud",
+    template: '%s | GravRel',
   },
   description:
-    "India's first solar-powered, DPDP-compliant cloud infrastructure. Deploy VMs, databases, Kubernetes in seconds. 60% cheaper than AWS. Data never leaves India. Built in Bhubaneswar, Odisha.",
+    "GravRel — India's first solar-powered, DPDP-compliant cloud infrastructure. Deploy VMs, databases, Kubernetes in seconds. 60% cheaper than AWS. Data never leaves India. Built in Bhubaneswar, Odisha.",
   keywords: [
+    'GravRel',
+    'GravRel cloud',
+    'gravrel.com',
     'DPDP compliant cloud India',
     'solar powered cloud India',
     'cloud hosting India',
@@ -41,8 +44,10 @@ export const metadata: Metadata = {
     'cloud server Odisha',
     'Indian cloud provider',
     'BRSR cloud certificate India',
+    'GravRel Bhubaneswar',
+    'GravRel Odisha',
   ],
-  authors: [{ name: 'Babrit Behera', url: 'https://yourcloud.in' }],
+  authors: [{ name: 'Babrit Behera', url: 'https://gravrel.com' }],
   creator: 'GravRel',
   publisher: 'GravRel',
   robots: {
@@ -59,17 +64,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://yourcloud.in',
-    siteName: 'YourCloud by GravRel',
-    title: "YourCloud — India's First Solar-Powered DPDP Cloud",
+    url: 'https://gravrel.com',
+    siteName: 'GravRel',
+    title: "GravRel — India's First Solar-Powered DPDP Cloud",
     description:
-      'DPDP-compliant, 100% solar-powered cloud. 60% cheaper than AWS. Data physically stays in Bhubaneswar, Odisha. Deploy in 60 seconds.',
+      'DPDP-compliant, 100% solar-powered cloud. 60% cheaper than AWS. Data stays in Bhubaneswar, Odisha. Deploy in 60 seconds.',
     images: [
       {
-        url: 'https://yourcloud.in/og-image.png',
+        url: 'https://gravrel.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'YourCloud — India First Solar Cloud',
+        alt: 'GravRel — India First Solar DPDP Cloud',
       },
     ],
   },
@@ -77,17 +82,12 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@YourCloudIN',
     creator: '@YourCloudIN',
-    title: "YourCloud — India's Solar-Powered DPDP Cloud",
-    description:
-      'DPDP compliant. 100% solar. 60% cheaper than AWS. Data stays in India.',
-    images: ['https://yourcloud.in/og-image.png'],
+    title: "GravRel — India's Solar-Powered DPDP Cloud",
+    description: 'DPDP compliant. 100% solar. 60% cheaper than AWS. Data stays in India. gravrel.com',
+    images: ['https://gravrel.com/og-image.png'],
   },
-  alternates: {
-    canonical: 'https://yourcloud.in',
-  },
-  verification: {
-    google: 'ADD_YOUR_GOOGLE_SEARCH_CONSOLE_TOKEN_HERE',
-  },
+  alternates: { canonical: 'https://gravrel.com' },
+  verification: { google: 'ADD_YOUR_GOOGLE_SEARCH_CONSOLE_TOKEN_HERE' },
   category: 'technology',
 };
 
@@ -95,19 +95,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={plusJakartaSans.variable}>
       <head>
-        {/* Structured Data — Google rich results */}
         <OrganizationSchema />
         <SoftwareApplicationSchema />
         <LocalBusinessSchema />
         <FAQSchema />
-        {/* Geo meta tags — India local SEO */}
         <meta name="geo.region" content="IN-OR" />
         <meta name="geo.placename" content="Bhubaneswar, Odisha, India" />
         <meta name="geo.position" content="20.2961;85.8245" />
         <meta name="ICBM" content="20.2961, 85.8245" />
-        {/* Language */}
         <meta httpEquiv="content-language" content="en-IN" />
-        {/* Performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>

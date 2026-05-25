@@ -2,18 +2,8 @@ import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [
-      {
-        userAgent: '*',
-        allow: '/',
-        disallow: [
-          '/api/',
-          '/admin/',
-          '/_next/',
-        ],
-      },
-    ],
-    sitemap: 'https://yourcloud.in/sitemap.xml',
-    host: 'https://yourcloud.in',
+    rules: [{ userAgent: '*', allow: '/', disallow: ['/api/', '/admin/', '/_next/'] }],
+    sitemap: 'https://gravrel.com/sitemap.xml',
+    host: 'https://gravrel.com',
   };
 }
