@@ -1,140 +1,58 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { Leaf, MapPin, Zap, Shield } from 'lucide-react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-
 export const metadata: Metadata = {
-  title: 'About',
-  description: 'YourCloud is India\'s first solar-powered, DPDP-compliant cloud. Built by Babrit Behera in Bhubaneswar, Odisha.',
+  title: "About GravRel — India's First Solar Cloud | GravRel",
+  description: "GravRel is India's first solar-powered, DPDP-compliant cloud company. Founded by Babrit Behera in Bhubaneswar, Odisha. UDYAM-OD-03-0020346.",
+  alternates: { canonical: 'https://gravrel.com/about' },
 };
-
-const TIMELINE = [
-  { date: 'Jun 2025', event: 'Company registered — GravrelAetherOps Pvt Ltd' },
-  { date: 'Jun 2025', event: 'Entire software stack written — 6 repos complete' },
-  { date: 'Jul 2025', event: 'Hardware procurement — Dell R750, TrueNAS, network gear' },
-  { date: 'Aug 2025', event: 'Solar installation — 15kW system on roof' },
-  { date: 'Sep 2025', event: 'Software deployed — first 5 beta customers' },
-  { date: 'Dec 2025', event: 'Target: 30 customers · ₹1.2L MRR · seed round' },
+const timeline = [
+  { year: '2025', title: 'GravRel Founded', desc: "Babrit Behera leaves his job to build India's first solar-powered, DPDP-compliant cloud from Bhubaneswar, Odisha." },
+  { year: '2026 Q1', title: 'Platform Complete', desc: 'Full cloud platform built — VMs, databases, Kubernetes, ML, LLM, AI assistant, and 8 homelab services.' },
+  { year: '2026 Q2', title: 'Hardware Procurement', desc: 'Dell R750 servers ordered. Solar-powered AC installed. TrueNAS storage ready. Solar panels going up.' },
+  { year: '2026 Q3', title: 'First Customers', desc: '3 STPI Bhubaneswar beta customers. Platform goes live. Free domain initiative for students launched.' },
+  { year: '2026 Q4', title: 'Seed Raise', desc: '30 customers, Rs 1.2L MRR. Incorporate as Pvt. Ltd. Raise seed round.' },
 ];
-
-const STACK = [
-  { label: 'Compute',    value: '2× Dell R750 on Proxmox VE — clustered'   },
-  { label: 'Storage',    value: 'TrueNAS SCALE · 48TB RAID-Z2 · NVMe cache' },
-  { label: 'GPU',        value: 'NVIDIA A40 48GB — MIG for multi-tenant ML' },
-  { label: 'Network',    value: 'MikroTik 10GbE · pfSense · WireGuard VPN'  },
-  { label: 'Solar',      value: 'Growatt hybrid inverter · LiFePO4 battery'  },
-  { label: 'Controller', value: 'PostgreSQL · Redis · MinIO · Keycloak · Caddy' },
-];
-
 export default function AboutPage() {
   return (
-    <>
-      <Navbar />
-      <div className="pt-24 pb-20">
-
-        {/* Hero */}
-        <section className="max-w-3xl mx-auto px-6 text-center mb-20">
-          <div className="flex items-center justify-center gap-1.5 text-brand-600 text-sm mb-6">
-            <MapPin size={14} /> Bhubaneswar, Odisha, India
-          </div>
-          <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-5">
-            Built in Tier 2 India.<br />
-            <span className="gradient-text">For all of India.</span>
-          </h1>
-          <p className="text-lg text-gray-500 leading-relaxed">
-            YourCloud started with a simple observation: Indian startups and enterprises were
-            paying AWS and Hetzner prices in dollars or euros, for data that then left the country —
-            while India's own DPDP Act demanded data stay local. That gap needed to be closed.
-          </p>
-        </section>
-
-        {/* Founder */}
-        <section className="max-w-3xl mx-auto px-6 mb-20">
-          <div className="bg-brand-900 text-white rounded-3xl p-8 md:p-12">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-brand-400 flex items-center justify-center text-2xl font-bold">B</div>
-              <div>
-                <p className="font-semibold text-white text-lg">Babrit Behera</p>
-                <p className="text-brand-300 text-sm">Founder & CEO · ceo@yourcloud.in</p>
-              </div>
+    <main className="min-h-screen bg-[#0A1628] text-white">
+      <section className="px-6 py-20 max-w-4xl mx-auto text-center">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6">Built in <span className="text-[#1D9E75]">Bhubaneswar</span>. For all of India.</h1>
+        <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">GravRel is India's first solar-powered, DPDP-compliant cloud infrastructure company. We exist to prove that world-class technology can be built from Tier 2 India.</p>
+      </section>
+      <section className="px-6 pb-16 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 mb-20">
+          {[{icon:'☀️',title:'Zero Carbon',desc:'100% solar powered. Growatt inverter + LiFePO4 battery. Zero grid electricity.'},{icon:'💧',title:'Zero Water Waste',desc:'Air-cooled only. No liquid cooling. No water consumption in operations.'},{icon:'🌱',title:'Green to the Environment',desc:'BRSR Green Certificates for customers. Real-time carbon dashboard.'}].map((item,i)=>(
+            <div key={i} className="bg-[#0D2137] border border-[#1D9E75]/20 rounded-2xl p-6 text-center">
+              <span className="text-4xl mb-4 block">{item.icon}</span>
+              <h3 className="text-lg font-bold text-[#1D9E75] mb-2">{item.title}</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
             </div>
-            <blockquote className="text-brand-100 text-lg leading-relaxed mb-6">
-              "I built the entire platform — every line of code, every architectural decision —
-              from Bhubaneswar. Not because I couldn't go to Bengaluru, but because I believe
-              Tier 2 India deserves infrastructure built inside it, not pointed at it from outside."
-            </blockquote>
-            <p className="text-brand-300 text-sm">
-              Phone and email are on every invoice. That's not a marketing line — it's a commitment.
-            </p>
-          </div>
-        </section>
-
-        {/* Why solar */}
-        <section className="max-w-3xl mx-auto px-6 mb-20">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Why solar?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {[
-              { icon: Leaf,   title: 'BRSR compliance',   desc: "India's top 1000 listed companies must now report cloud infrastructure carbon footprint. We make that trivial." },
-              { icon: Zap,    title: 'Lower operating costs', desc: 'Solar eliminates electricity bills. Those savings go directly into keeping our prices 60% below AWS.' },
-              { icon: Shield, title: 'Verifiable, not greenwashing', desc: 'Panels on our roof, Growatt data live on our website. Not a footnote in a sustainability report.' },
-            ].map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="bg-white border border-gray-100 rounded-2xl p-5">
-                <div className="w-9 h-9 bg-brand-50 rounded-xl flex items-center justify-center mb-4">
-                  <Icon size={18} className="text-brand-600" />
+          ))}
+        </div>
+        <div className="mb-20">
+          <h2 className="text-2xl font-bold text-center mb-10">Our Story</h2>
+          <div className="space-y-6">
+            {timeline.map((item,i)=>(
+              <div key={i} className="flex gap-6">
+                <div className="flex flex-col items-center">
+                  <div className="w-3 h-3 rounded-full bg-[#1D9E75] mt-1.5 flex-shrink-0" />
+                  {i<timeline.length-1&&<div className="w-0.5 bg-[#1D9E75]/20 flex-1 mt-2" />}
                 </div>
-                <h3 className="text-sm font-semibold text-gray-900 mb-2">{title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
+                <div className="pb-6">
+                  <span className="text-xs text-[#1D9E75] font-semibold">{item.year}</span>
+                  <h3 className="text-lg font-bold text-white mt-1 mb-2">{item.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+                </div>
               </div>
             ))}
           </div>
-        </section>
-
-        {/* Hardware stack */}
-        <section className="max-w-3xl mx-auto px-6 mb-20">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">The actual hardware</h2>
-          <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-            {STACK.map(({ label, value }) => (
-              <div key={label} className="flex gap-4 px-6 py-4 border-b border-gray-50 last:border-0">
-                <span className="text-sm font-medium text-gray-500 w-28 flex-shrink-0">{label}</span>
-                <span className="text-sm text-gray-700">{value}</span>
-              </div>
-            ))}
-          </div>
-          <p className="text-xs text-gray-400 mt-3">
-            All hardware physically located in Bhubaneswar, Odisha. Network: 192.168.1.0/24 private LAN + WireGuard VPN 10.8.0.0/24.
-          </p>
-        </section>
-
-        {/* Timeline */}
-        <section className="max-w-3xl mx-auto px-6 mb-20">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-8">Our journey</h2>
-          <div className="relative pl-6 border-l-2 border-brand-100 space-y-6">
-            {TIMELINE.map(({ date, event }) => (
-              <div key={event} className="relative">
-                <div className="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full bg-brand-400 border-2 border-white" />
-                <p className="text-xs font-medium text-brand-600 mb-1">{date}</p>
-                <p className="text-sm text-gray-700">{event}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-4">Want to be part of this?</h2>
-          <p className="text-gray-500 mb-8">
-            We're looking for our first 10 customers, grant funding, and community partners in Odisha.
-            If any of that is you — let's talk.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="btn-primary">Get in touch</Link>
-            <Link href="https://console.yourcloud.in/register" className="btn-secondary">Try it free</Link>
-          </div>
-        </section>
-
-      </div>
-      <Footer />
-    </>
+        </div>
+        <div className="bg-[#0D2137] border border-[#1D9E75]/20 rounded-2xl p-8 text-center">
+          <h3 className="text-xl font-bold mb-1">Babrit Behera</h3>
+          <p className="text-[#1D9E75] text-sm mb-4">Founder & CEO · GravRel</p>
+          <p className="text-gray-400 text-sm max-w-lg mx-auto leading-relaxed mb-6">Left a stable job to build something that matters. GravRel is proof that Tier 2 India can build world-class infrastructure that is green, affordable, and locally owned.</p>
+          <a href="mailto:ceo@gravrel.com" className="text-[#1D9E75] font-semibold hover:underline">ceo@gravrel.com →</a>
+        </div>
+      </section>
+    </main>
   );
 }

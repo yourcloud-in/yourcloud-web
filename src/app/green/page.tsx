@@ -1,56 +1,39 @@
 import type { Metadata } from 'next';
-import { Leaf } from 'lucide-react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import CarbonDashboard from '@/components/CarbonDashboard';
-
 export const metadata: Metadata = {
-  title: 'Carbon Dashboard',
-  description: 'Real-time solar generation and CO₂ savings from YourCloud\'s Bhubaneswar datacenter.',
+  title: 'Solar-Powered Cloud India — Zero Carbon | GravRel',
+  description: 'GravRel runs on 100% solar power. Zero carbon emissions, zero water waste. Real-time carbon dashboard. BRSR Green Certificates for ESG reporting. Bhubaneswar, Odisha.',
+  alternates: { canonical: 'https://gravrel.com/green' },
 };
-
+const pillars = [
+  { icon: '☀️', title: 'Zero Carbon Emissions', desc: 'Our datacenter runs on 100% solar power via Growatt hybrid inverter and LiFePO4 battery backup. Zero grid electricity. Zero fossil fuels. Ever.', stat: '0 kg', statLabel: 'CO₂ per compute hour' },
+  { icon: '💧', title: 'Zero Water Waste', desc: 'Air-based cooling only — split AC + DC fans. No liquid cooling, no water blocks, no evaporative cooling. Nothing that wastes a drop of water.', stat: '0 L', statLabel: 'Water consumed' },
+  { icon: '🌱', title: 'Green to the Environment', desc: 'Every GravRel customer gets a BRSR Green Certificate for ESG reporting. We are not just green ourselves — we help you prove it to your investors.', stat: '100%', statLabel: 'Renewable energy' },
+];
 export default function GreenPage() {
   return (
-    <>
-      <Navbar />
-      <div className="pt-24 pb-20">
-        <div className="max-w-4xl mx-auto px-6">
-
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center gap-2 text-brand-600 text-sm mb-4">
-              <Leaf size={15} />
-              <span>Live data from Bhubaneswar, Odisha</span>
-              <span className="flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" />
-                Live
-              </span>
+    <main className="min-h-screen bg-[#0A1628] text-white">
+      <section className="px-6 py-20 max-w-5xl mx-auto text-center">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6">The only cloud that is<br /><span className="text-[#1D9E75]">truly green.</span></h1>
+        <p className="text-xl text-gray-400 max-w-2xl mx-auto">AWS consumes millions of litres of water annually. We consume zero. AWS runs on grid electricity. We run on sunlight. This is not marketing — it is architecture.</p>
+      </section>
+      <section className="px-6 pb-16 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
+          {pillars.map((p,i)=>(
+            <div key={i} className="bg-[#0D2137] border border-[#1D9E75]/20 rounded-2xl p-8">
+              <span className="text-4xl mb-4 block">{p.icon}</span>
+              <div className="text-4xl font-black text-[#1D9E75] mb-1">{p.stat}</div>
+              <div className="text-xs text-gray-500 mb-4">{p.statLabel}</div>
+              <h3 className="text-lg font-bold text-white mb-3">{p.title}</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">{p.desc}</p>
             </div>
-            <h1 className="text-4xl font-semibold text-gray-900 mb-3">Carbon Dashboard</h1>
-            <p className="text-gray-500 max-w-xl mx-auto">
-              Every workload on YourCloud runs on solar energy from our rooftop in Bhubaneswar.
-              This is the real-time proof.
-            </p>
-          </div>
-
-          <CarbonDashboard />
-
-          <div className="mt-12 bg-brand-900 text-white rounded-3xl p-8">
-            <h2 className="text-lg font-semibold mb-3">Use this in your BRSR report</h2>
-            <p className="text-brand-200 text-sm leading-relaxed mb-4">
-              SEBI's Business Responsibility and Sustainability Reporting (BRSR) framework requires
-              India's top 1000 listed companies to disclose their technology supply chain carbon footprint.
-              YourCloud customers receive monthly Green Cloud Certificates showing exact CO₂ savings
-              versus equivalent coal-grid cloud usage — ready to include in your BRSR filing.
-            </p>
-            <p className="text-brand-300 text-xs">
-              CO₂ factor: 0.82 kg per kWh (India grid, CEA 2023 baseline).
-              Solar generation data from Growatt monitoring — updated every 5 minutes.
-            </p>
-          </div>
-
+          ))}
         </div>
-      </div>
-      <Footer />
-    </>
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-4">Get Your Green Certificate</h2>
+          <p className="text-gray-400 mb-8 max-w-xl mx-auto">Every GravRel customer receives a BRSR Green Certificate proving your compute runs on 100% solar power. Use it in ESG reports and investor decks.</p>
+          <a href="/pricing" className="inline-flex items-center gap-2 bg-[#1D9E75] hover:bg-[#0F6E56] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all">Start with GravRel →</a>
+        </div>
+      </section>
+    </main>
   );
 }

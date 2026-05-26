@@ -1,59 +1,38 @@
 import type { Metadata } from 'next';
-import { Mail, MapPin, Phone } from 'lucide-react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-
 export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Contact YourCloud — email, phone, or visit us in Bhubaneswar.',
+  title: 'Contact GravRel — Talk to Babrit Behera | GravRel',
+  description: "Contact GravRel founder Babrit Behera directly. India's first solar-powered DPDP cloud. ceo@gravrel.com · Bhubaneswar, Odisha.",
+  alternates: { canonical: 'https://gravrel.com/contact' },
 };
-
 export default function ContactPage() {
   return (
-    <>
-      <Navbar />
-      <div className="pt-24 pb-20">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-semibold text-gray-900 mb-3">Get in touch</h1>
-            <p className="text-gray-500">
-              You will reach a real human — not a chatbot. Response within 24 hours, usually faster.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12">
-            {[
-              { icon: Mail,    label: 'Email',    value: 'ceo@yourcloud.in',        href: 'mailto:ceo@yourcloud.in' },
-              { icon: Phone,   label: 'Phone',    value: 'Listed in your console',  href: '#' },
-              { icon: MapPin,  label: 'Location', value: 'Bhubaneswar, Odisha',     href: 'https://maps.google.com/?q=Bhubaneswar+Odisha' },
-            ].map(({ icon: Icon, label, value, href }) => (
-              <a key={label} href={href}
-                className="bg-white border border-gray-100 rounded-2xl p-6 flex flex-col items-center text-center hover:border-brand-200 transition-colors">
-                <div className="w-10 h-10 bg-brand-50 rounded-xl flex items-center justify-center mb-3">
-                  <Icon size={18} className="text-brand-600" />
-                </div>
-                <p className="text-xs font-medium text-gray-400 mb-1">{label}</p>
-                <p className="text-sm font-medium text-gray-800">{value}</p>
-              </a>
-            ))}
-          </div>
-
-          <div className="bg-brand-900 text-white rounded-3xl p-8 text-center">
-            <h2 className="text-xl font-semibold mb-3">Looking for a partnership?</h2>
-            <p className="text-brand-200 text-sm leading-relaxed mb-6">
-              We're actively looking for STPI-registered companies, Odisha government digitisation
-              projects, and ESG-conscious enterprises to be our first customers. If that's you —
-              email us and we'll respond within the hour.
-            </p>
-            <a href="mailto:ceo@yourcloud.in"
-              className="inline-flex items-center gap-2 bg-brand-400 text-white px-7 py-3 rounded-xl font-medium hover:bg-brand-600 transition-all">
-              <Mail size={15} />
-              ceo@yourcloud.in
-            </a>
-          </div>
+    <main className="min-h-screen bg-[#0A1628] text-white">
+      <section className="px-6 py-20 max-w-3xl mx-auto">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Talk to <span className="text-[#1D9E75]">Babrit</span></h1>
+          <p className="text-xl text-gray-400">No support tickets. No bots. You talk directly to the founder.</p>
         </div>
-      </div>
-      <Footer />
-    </>
+        <div className="grid md:grid-cols-2 gap-6 mb-12">
+          {[
+            { icon: '📧', label: 'Email', value: 'ceo@gravrel.com', sub: 'Response within 2 hours' },
+            { icon: '🏙️', label: 'Location', value: 'Bhubaneswar, Odisha', sub: 'India · UDYAM-OD-03-0020346' },
+            { icon: '🌐', label: 'Website', value: 'gravrel.com', sub: "India's first solar cloud" },
+            { icon: '☀️', label: 'Mission', value: 'Zero carbon · Zero water waste', sub: 'Green to the environment' },
+          ].map((item, i) => (
+            <div key={i} className="bg-[#0D2137] border border-white/10 rounded-2xl p-6">
+              <span className="text-3xl mb-3 block">{item.icon}</span>
+              <div className="text-xs text-[#1D9E75] font-semibold mb-1 uppercase tracking-wide">{item.label}</div>
+              <div className="text-white font-semibold">{item.value}</div>
+              <div className="text-gray-500 text-sm mt-1">{item.sub}</div>
+            </div>
+          ))}
+        </div>
+        <div className="bg-[#0D2137] border border-[#1D9E75]/20 rounded-2xl p-8 text-center">
+          <h2 className="text-xl font-bold mb-2">Start with a free beta</h2>
+          <p className="text-gray-400 mb-6">Email Babrit directly. 3-month free beta. DPDP compliant, 60% cheaper than AWS, data stays in Odisha.</p>
+          <a href="mailto:ceo@gravrel.com?subject=GravRel Beta Interest" className="inline-flex items-center gap-2 bg-[#1D9E75] hover:bg-[#0F6E56] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all">📧 Email Babrit Now</a>
+        </div>
+      </section>
+    </main>
   );
 }
