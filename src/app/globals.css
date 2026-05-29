@@ -1,41 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    background: #ffffff;
-    color: #111827;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+:root {
+  --color-green: #1D9E75;
+  --color-dark: #0A1628;
+  --color-card: #0D2137;
+  --font-jakarta: 'Plus Jakarta Sans', sans-serif;
 }
 
-@layer components {
-  .btn-primary {
-    @apply inline-flex items-center gap-2 bg-brand-400 text-white
-           px-5 py-2.5 rounded-xl text-sm font-medium
-           hover:bg-brand-600 transition-all
-           hover:shadow-lg hover:shadow-brand-400/25
-           disabled:opacity-50 disabled:cursor-not-allowed;
-  }
-  .btn-secondary {
-    @apply inline-flex items-center gap-2 bg-white text-gray-700
-           px-5 py-2.5 rounded-xl text-sm font-medium border border-gray-200
-           hover:border-gray-300 hover:bg-gray-50 transition-all;
-  }
-  .gradient-text {
-    @apply bg-gradient-to-r from-brand-600 to-brand-400 bg-clip-text text-transparent;
-  }
-  .section {
-    @apply px-6 py-20 md:px-12 lg:px-24 max-w-7xl mx-auto;
-  }
-  .card-hover {
-    @apply transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5;
-  }
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #0A1628;
+  color: #ffffff;
+  font-family: var(--font-jakarta);
+}
+
+@layer utilities {
+  .bg-gravrel-dark { background-color: #0A1628; }
+  .bg-gravrel-card { background-color: #0D2137; }
+  .text-gravrel-green { color: #1D9E75; }
+  .border-gravrel-green { border-color: #1D9E75; }
+  .bg-gravrel-green { background-color: #1D9E75; }
 }
