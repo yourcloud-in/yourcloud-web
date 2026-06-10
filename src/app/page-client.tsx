@@ -55,7 +55,7 @@ export function HeroSection() {
           Built in Bhubaneswar, Odisha.
         </p>
         <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a href="https://console.gravrel.com" style={{
+          <a href="mailto:ceo@gravrel.com" style={{
             background: '#1D9E75', color: '#fff', padding: '14px 32px',
             borderRadius: 12, fontWeight: 700, fontSize: 16, textDecoration: 'none',
           }}>
