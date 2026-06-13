@@ -1,4 +1,5 @@
 import { HeroSection, StatsSection, MoatsSection, PricingSection, CTASection } from './page-client'
+import { CertificationsSection } from './CertificationsSection'
 
 export default function Home() {
   return (
@@ -6,6 +7,7 @@ export default function Home() {
       <HeroSection />
       <StatsSection />
       <MoatsSection />
+      <CertificationsSection />
       <PricingSection />
       <CTASection />
     </main>
