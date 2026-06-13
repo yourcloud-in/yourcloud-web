@@ -55,7 +55,7 @@ export function HeroSection() {
           Built in Bhubaneswar, Odisha.
         </p>
         <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a href="mailto:ceo@gravrel.com" style={{
+          <a href="https://console.gravrelaetherops.com/register" style={{
             background: '#1D9E75', color: '#fff', padding: '14px 32px',
             borderRadius: 12, fontWeight: 700, fontSize: 16, textDecoration: 'none',
           }}>
@@ -213,13 +213,23 @@ export function CTASection() {
       <p style={{ color: 'rgba(255,255,255,0.5)', marginBottom: 40, fontSize: 16 }}>
         Join India's first DPDP-compliant, solar-powered cloud.
       </p>
-      <a href="mailto:ceo@gravrel.com" style={{
-        background: '#1D9E75', color: '#fff', padding: '16px 40px',
-        borderRadius: 12, fontWeight: 700, fontSize: 18, textDecoration: 'none',
-        display: 'inline-block',
-      }}>
-        Start Free Beta Today →
-      </a>
+      <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
+        <a href="https://console.gravrelaetherops.com/register" style={{
+          background: '#1D9E75', color: '#fff', padding: '16px 40px',
+          borderRadius: 12, fontWeight: 700, fontSize: 18, textDecoration: 'none',
+          display: 'inline-block',
+        }}>
+          Start Free Beta Today →
+        </a>
+        <a href="mailto:ceo@gravrel.com" style={{
+          background: 'transparent', color: '#fff', padding: '16px 40px',
+          borderRadius: 12, fontWeight: 700, fontSize: 18, textDecoration: 'none',
+          display: 'inline-block',
+          border: '1px solid rgba(255,255,255,0.2)',
+        }}>
+          Talk to Babrit
+        </a>
+      </div>
       <div style={{ marginTop: 32, color: 'rgba(255,255,255,0.3)', fontSize: 13 }}>
         Zero carbon · Zero water waste · Solar-powered ☀️ · Bhubaneswar, Odisha
       </div>
