@@ -9,6 +9,7 @@ const font = Plus_Jakarta_Sans({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://gravrelaetherops.com'),
   title: 'GravRel — India\'s First Solar-Powered DPDP Cloud',
   description: '60% cheaper than AWS. DPDP Act 2023 compliant from day one. 100% solar powered. Data never leaves India. Built in Bhubaneswar, Odisha.',
   keywords: ['cloud hosting India', 'DPDP compliant cloud', 'solar powered cloud', 'Bhubaneswar cloud', 'affordable cloud India'],
