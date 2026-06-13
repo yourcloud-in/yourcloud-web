@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
+import ChatWidget from './ChatWidget'
 
 const font = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -27,7 +28,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={font.variable}>
-      <body className="bg-gravrel-dark text-white antialiased">{children}</body>
+      <body className="bg-gravrel-dark text-white antialiased">
+  {children}
+  <ChatWidget />
+</body>
     </html>
   )
 }
