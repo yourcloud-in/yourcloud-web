@@ -1,20 +1,21 @@
-import { MetadataRoute } from 'next';
+import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://gravrel.com';
-  const now = new Date();
+  const baseUrl = 'https://gravrel.com'
+  const lastModified = new Date()
+
   return [
-    { url: base,                    lastModified: now, changeFrequency: 'weekly',  priority: 1.0 },
-    { url: `${base}/pricing`,       lastModified: now, changeFrequency: 'weekly',  priority: 0.9 },
-    { url: `${base}/dpdp`,          lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${base}/try`,           lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/freedomain`,    lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/green`,         lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/about`,         lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${base}/datacenter`,    lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${base}/blog`,          lastModified: now, changeFrequency: 'weekly',  priority: 0.7 },
-    { url: `${base}/contact`,       lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${base}/legal/terms`,   lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },
-    { url: `${base}/legal/privacy`, lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },
-  ];
+    { url: baseUrl,                    lastModified, changeFrequency: 'weekly',  priority: 1.0 },
+    { url: `${baseUrl}/pricing`,       lastModified, changeFrequency: 'weekly',  priority: 0.9 },
+    { url: `${baseUrl}/dpdp`,          lastModified, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${baseUrl}/green`,         lastModified, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/datacenter`,    lastModified, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/try`,           lastModified, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/freedomain`,    lastModified, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/blog`,          lastModified, changeFrequency: 'weekly',  priority: 0.7 },
+    { url: `${baseUrl}/contact`,       lastModified, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${baseUrl}/about`,         lastModified, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${baseUrl}/legal/privacy`, lastModified, changeFrequency: 'yearly',  priority: 0.3 },
+    { url: `${baseUrl}/legal/terms`,   lastModified, changeFrequency: 'yearly',  priority: 0.3 },
+  ]
 }
