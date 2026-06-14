@@ -3,21 +3,30 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
-const SERVICES = [
-  { name: 'Cloud VMs',        desc: 'Dedicated virtual machines, ready in 60s',  href: '/services/vms'        },
-  { name: 'Managed Databases',desc: 'MySQL, PostgreSQL, MongoDB — fully managed', href: '/services/databases'  },
-  { name: 'Kubernetes',       desc: 'Managed k3s clusters, one click',           href: '/services/kubernetes' },
-  { name: 'ML Environment',   desc: 'GPU-backed Jupyter + Kubeflow',             href: '/services/ml'         },
-  { name: 'Object Storage',   desc: 'S3-compatible, MinIO-powered',               href: '/services/storage'    },
-  { name: 'Web Hosting',      desc: 'Auto-SSL, any domain, Caddy-powered',        href: '/services/hosting'    },
+const PRODUCTS = [
+  { name: 'Cloud VMs',         desc: 'Dedicated virtual machines, ready in 60s',    href: '/pricing' },
+  { name: 'Managed Databases', desc: 'MySQL, PostgreSQL, Redis — fully managed',     href: '/pricing' },
+  { name: 'Kubernetes',        desc: 'Managed K8s clusters, one click',              href: '/pricing' },
+  { name: 'ML / GPU',          desc: 'NVIDIA A40 48GB, Jupyter ready',               href: '/pricing' },
+  { name: 'Object Storage',    desc: 'S3-compatible, data never leaves India',        href: '/pricing' },
+  { name: 'LLM Playground',    desc: 'Run AI models on solar-powered GPU',           href: '/pricing' },
+];
+
+const COMPANY = [
+  { name: 'DPDP Compliance',   href: '/dpdp'       },
+  { name: 'Solar & Green',     href: '/green'      },
+  { name: 'Our Datacenter',    href: '/datacenter' },
+  { name: 'Blog',              href: '/blog'       },
+  { name: 'Free Domain',       href: '/freedomain' },
+  { name: 'Try GravRel',       href: '/try'        },
 ];
 
 export default function Navbar() {
-  const [open, setOpen]             = useState(false);
-  const [scrolled, setScrolled]     = useState(false);
-  const [servicesOpen, setServices] = useState(false);
+  const [open, setOpen]           = useState(false);
+  const [scrolled, setScrolled]   = useState(false);
+  const [productsOpen, setProducts] = useState(false);
+  const [companyOpen, setCompany]   = useState(false);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 8);
@@ -25,46 +34,47 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handler);
   }, []);
 
+  const closeAll = () => { setProducts(false); setCompany(false); };
+
   return (
-    <nav className={cn(
-      'fixed top-0 inset-x-0 z-50 transition-all duration-300',
-      scrolled
-        ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100'
-        : 'bg-transparent',
-    )}>
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center gap-8">
+    <nav style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
+      background: scrolled ? 'rgba(10,22,40,0.95)' : 'transparent',
+      backdropFilter: scrolled ? 'blur(16px)' : 'none',
+      borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : 'none',
+      transition: 'all 0.3s',
+    }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', height: 64, display: 'flex', alignItems: 'center', gap: 32 }}>
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-          <div className="w-7 h-7 rounded-lg bg-brand-400 flex items-center justify-center">
-            <div className="w-3 h-3 rounded-full bg-white" />
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none', flexShrink: 0 }}>
+          <div style={{ width: 28, height: 28, borderRadius: 8, background: '#1D9E75', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#fff' }} />
           </div>
-          <span className="font-semibold text-gray-900">YourCloud</span>
+          <span style={{ fontWeight: 700, color: '#fff', fontSize: 16 }}>GravRel</span>
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-7 flex-1">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 24, flex: 1 }} className="hidden-mobile">
 
-          {/* Services dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => setServices((s) => !s)}
-              className="flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 transition-colors"
-            >
-              Services <ChevronDown size={13} className={cn('transition-transform', servicesOpen && 'rotate-180')} />
+          {/* Products dropdown */}
+          <div style={{ position: 'relative' }}>
+            <button onClick={() => { setProducts(p => !p); setCompany(false); }}
+              style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 14, color: 'rgba(255,255,255,0.7)', background: 'none', border: 'none', cursor: 'pointer' }}>
+              Products <ChevronDown size={13} style={{ transform: productsOpen ? 'rotate(180deg)' : 'none', transition: '0.2s' }} />
             </button>
-
-            {servicesOpen && (
+            {productsOpen && (
               <>
-                <div className="fixed inset-0" onClick={() => setServices(false)} />
-                <div className="absolute top-9 left-0 w-80 bg-white rounded-2xl shadow-xl border border-gray-100 p-3 z-50">
-                  {SERVICES.map((s) => (
-                    <Link key={s.name} href={s.href}
-                      onClick={() => setServices(false)}
-                      className="flex flex-col gap-0.5 px-3 py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
+                <div style={{ position: 'fixed', inset: 0 }} onClick={closeAll} />
+                <div style={{ position: 'absolute', top: 36, left: 0, width: 300, background: '#0D2137', borderRadius: 16, border: '1px solid rgba(255,255,255,0.08)', padding: 8, zIndex: 100, boxShadow: '0 24px 48px rgba(0,0,0,0.4)' }}>
+                  {PRODUCTS.map(p => (
+                    <Link key={p.name} href={p.href} onClick={closeAll}
+                      style={{ display: 'flex', flexDirection: 'column', gap: 2, padding: '10px 12px', borderRadius: 10, textDecoration: 'none', transition: 'background 0.15s' }}
+                      onMouseEnter={e => (e.currentTarget.style.background = 'rgba(29,158,117,0.1)')}
+                      onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
                     >
-                      <span className="text-sm font-medium text-gray-900">{s.name}</span>
-                      <span className="text-xs text-gray-400">{s.desc}</span>
+                      <span style={{ fontSize: 13, fontWeight: 600, color: '#fff' }}>{p.name}</span>
+                      <span style={{ fontSize: 11, color: '#4A6F8A' }}>{p.desc}</span>
                     </Link>
                   ))}
                 </div>
@@ -72,47 +82,83 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link href="/pricing" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">Pricing</Link>
-          <Link href="/about"   className="text-sm text-gray-600 hover:text-gray-900 transition-colors">About</Link>
-          <Link href="/blog"    className="text-sm text-gray-600 hover:text-gray-900 transition-colors">Blog</Link>
-          <Link href="/docs"    className="text-sm text-gray-600 hover:text-gray-900 transition-colors">Docs</Link>
+          {/* Company dropdown */}
+          <div style={{ position: 'relative' }}>
+            <button onClick={() => { setCompany(c => !c); setProducts(false); }}
+              style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 14, color: 'rgba(255,255,255,0.7)', background: 'none', border: 'none', cursor: 'pointer' }}>
+              Company <ChevronDown size={13} style={{ transform: companyOpen ? 'rotate(180deg)' : 'none', transition: '0.2s' }} />
+            </button>
+            {companyOpen && (
+              <>
+                <div style={{ position: 'fixed', inset: 0 }} onClick={closeAll} />
+                <div style={{ position: 'absolute', top: 36, left: 0, width: 200, background: '#0D2137', borderRadius: 16, border: '1px solid rgba(255,255,255,0.08)', padding: 8, zIndex: 100, boxShadow: '0 24px 48px rgba(0,0,0,0.4)' }}>
+                  {COMPANY.map(c => (
+                    <Link key={c.name} href={c.href} onClick={closeAll}
+                      style={{ display: 'block', padding: '10px 12px', borderRadius: 10, fontSize: 13, fontWeight: 500, color: '#fff', textDecoration: 'none', transition: 'background 0.15s' }}
+                      onMouseEnter={e => (e.currentTarget.style.background = 'rgba(29,158,117,0.1)')}
+                      onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+                    >
+                      {c.name}
+                    </Link>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+
+          <Link href="/pricing" style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}>Pricing</Link>
+          <Link href="/blog"    style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}>Blog</Link>
+          <Link href="/contact" style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}>Contact</Link>
         </div>
 
         {/* CTA */}
-        <div className="hidden md:flex items-center gap-3 ml-auto">
-          <Link href="https://console.yourcloud.in/login"
-            className="text-sm text-gray-600 hover:text-gray-900 transition-colors px-3 py-2">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginLeft: 'auto' }} className="hidden-mobile">
+          <Link href="https://console.gravrelaetherops.com/login"
+            style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', textDecoration: 'none', padding: '8px 12px' }}>
             Log in
           </Link>
-          <Link href="https://console.yourcloud.in/register" className="btn-primary text-sm py-2">
-            Start free →
+          <Link href="https://console.gravrelaetherops.com/register"
+            style={{ fontSize: 13, fontWeight: 700, color: '#fff', background: '#1D9E75', padding: '8px 20px', borderRadius: 10, textDecoration: 'none' }}>
+            Start Free →
           </Link>
         </div>
 
         {/* Mobile toggle */}
-        <button className="md:hidden ml-auto text-gray-600" onClick={() => setOpen((o) => !o)}>
+        <button style={{ marginLeft: 'auto', background: 'none', border: 'none', color: '#fff', cursor: 'pointer' }}
+          className="show-mobile" onClick={() => setOpen(o => !o)}>
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-white border-t border-gray-100 px-6 py-5 space-y-4">
-          {SERVICES.map((s) => (
-            <Link key={s.name} href={s.href} onClick={() => setOpen(false)}
-              className="block text-sm text-gray-700 font-medium">{s.name}</Link>
+        <div style={{ background: '#0D2137', borderTop: '1px solid rgba(255,255,255,0.06)', padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#1D9E75', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Products</div>
+          {PRODUCTS.map(p => (
+            <Link key={p.name} href={p.href} onClick={() => setOpen(false)}
+              style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', textDecoration: 'none' }}>{p.name}</Link>
           ))}
-          <Link href="/pricing" onClick={() => setOpen(false)} className="block text-sm text-gray-600">Pricing</Link>
-          <Link href="/about"   onClick={() => setOpen(false)} className="block text-sm text-gray-600">About</Link>
-          <Link href="/blog"    onClick={() => setOpen(false)} className="block text-sm text-gray-600">Blog</Link>
-          <div className="flex gap-3 pt-3 border-t border-gray-100">
-            <Link href="https://console.yourcloud.in/login"
-              className="flex-1 text-center text-sm border border-gray-200 rounded-xl py-2.5">Log in</Link>
-            <Link href="https://console.yourcloud.in/register"
-              className="flex-1 text-center text-sm bg-brand-400 text-white rounded-xl py-2.5 font-medium">Start free</Link>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#1D9E75', textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: 8 }}>Company</div>
+          {COMPANY.map(c => (
+            <Link key={c.name} href={c.href} onClick={() => setOpen(false)}
+              style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', textDecoration: 'none' }}>{c.name}</Link>
+          ))}
+          <Link href="/pricing" onClick={() => setOpen(false)} style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', textDecoration: 'none' }}>Pricing</Link>
+          <Link href="/blog"    onClick={() => setOpen(false)} style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', textDecoration: 'none' }}>Blog</Link>
+          <Link href="/contact" onClick={() => setOpen(false)} style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', textDecoration: 'none' }}>Contact</Link>
+          <div style={{ display: 'flex', gap: 12, paddingTop: 12, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+            <Link href="https://console.gravrelaetherops.com/login" onClick={() => setOpen(false)}
+              style={{ flex: 1, textAlign: 'center', fontSize: 13, border: '1px solid rgba(255,255,255,0.2)', color: '#fff', borderRadius: 10, padding: '10px', textDecoration: 'none' }}>Log in</Link>
+            <Link href="https://console.gravrelaetherops.com/register" onClick={() => setOpen(false)}
+              style={{ flex: 1, textAlign: 'center', fontSize: 13, background: '#1D9E75', color: '#fff', borderRadius: 10, padding: '10px', textDecoration: 'none', fontWeight: 700 }}>Start Free</Link>
           </div>
         </div>
       )}
+
+      <style>{`
+        @media (max-width: 768px) { .hidden-mobile { display: none !important; } }
+        @media (min-width: 769px) { .show-mobile { display: none !important; } }
+      `}</style>
     </nav>
   );
 }
