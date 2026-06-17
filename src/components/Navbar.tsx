@@ -112,7 +112,7 @@ export default function Navbar() {
         </div>
 
         {/* CTA */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginLeft: 'auto' }} className="hidden-mobile">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginLeft: 'auto' }}>
           <Link href="https://console.gravrelaetherops.com/login"
             style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', textDecoration: 'none', padding: '8px 12px' }}>
             Log in
@@ -124,7 +124,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile toggle */}
-        <button style={{ marginLeft: 'auto', background: 'none', border: 'none', color: '#fff', cursor: 'pointer' }}
+        <button style={{ marginLeft: 'auto', background: 'none', border: 'none', color: '#fff', cursor: 'pointer' , display: 'none' }}
           className="show-mobile" onClick={() => setOpen(o => !o)}>
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
