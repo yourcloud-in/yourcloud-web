@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 import ChatWidget from './ChatWidget'
+import Navbar from '@/components/Navbar'
 
 const font = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -121,6 +122,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-gravrel-dark text-white antialiased">
+	<Navbar />
         {children}
         <ChatWidget />
       </body>
