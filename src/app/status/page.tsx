@@ -1,8 +1,12 @@
+export const dynamic = 'force-static';
+
 export default function StatusPage() {
   return (
-    <iframe
-      src="/status.html"
-      style={{ width: '100%', height: '100vh', border: 'none' }}
-    />
+    <html>
+      <head>
+        <meta httpEquiv="refresh" content="0; url=/status.html" />
+      </head>
+      <body />
+    </html>
   );
 }
